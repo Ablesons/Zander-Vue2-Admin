@@ -1,0 +1,249 @@
+@import './variables.scss';
+@import './mixin.scss';
+@import './transition.scss';
+@import './element-ui.scss';
+@import './sidebar.scss';
+@import './btn.scss';
+@import './common.scss';
+
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue,
+  Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+label {
+  font-weight: 700;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+.pr-5 {
+  padding-right: 5px;
+}
+
+.pl-5 {
+  padding-left: 5px;
+}
+
+.block {
+  display: block;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.inlineBlock {
+  display: block;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+aside {
+  background: #eef1f6;
+  padding: 8px 24px;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  display: block;
+  line-height: 32px;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  color: #2c3e50;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  a {
+    color: #337ab7;
+    cursor: pointer;
+
+    &:hover {
+      color: rgb(32, 160, 255);
+    }
+  }
+}
+
+// 按钮颜色调整
+.btn-refresh{
+  background-color: #0099CC !important;
+  border-color: #0099CC !important;
+  color: white !important;
+}
+.btn-refresh:hover,.btn-refresh:focus{
+  background-color: #0099CC !important;
+  color: white !important;
+}
+
+.btn-create{
+  background-color: #339966 !important;
+  color: white !important;
+  border-color: #339966 !important;
+}
+.btn-create:hover,.btn-create:focus{
+  background-color: #339966 !important;
+  color: white !important;
+}
+
+.btn-delete{
+  background-color: #FF4545 !important;
+  border-color: #FF4545 !important;
+  color: white !important;
+}
+.btn-delete:hover,.btn-delete:focus{
+  background-color: #FF4545 !important;
+  color: white !important;
+}
+
+.btn-search{
+  background-color: #CC6600 !important;
+  border-color: #CC6600 !important;
+  color: white !important;
+}
+.btn-search:hover,.btn-search:focus{
+  background-color: #CC6600 !important;
+  color: white !important;
+}
+
+.btn-reset{
+  background-color: #666699 !important;
+  border-color: #666699 !important;
+  color: white !important;
+}
+.btn-reset:hover,.btn-reset:focus{
+  background-color: #666699 !important;
+  color: white !important;
+}
+
+.btn-setting{
+  background-color: #006699 !important;
+  border-color: #006699 !important;
+  color: white;
+}
+.btn-setting:hover,.btn-setting:focus{
+  background-color: #006699 !important;
+  color: white !important;
+}
+.btn-setting:disabled{
+  background-color: #006699 !important;
+  color: white !important;
+}
+
+.btn-style1{
+  background-color: #FF9966 !important;
+  border-color: #FF9966 !important;
+  color: white !important;
+}
+.btn-style1:hover,.btn-style1:focus{
+  background-color: #FF9966 !important;
+  color: white !important;
+}
+
+.btn-style2{
+  background-color: #99CCCC !important;
+  border-color: #99CCCC !important;
+  color: white !important;
+}
+.btn-style2:hover,.btn-style2:focus{
+  background-color: #99CCCC !important;
+  color: white !important;
+}
+.btn-style3{
+  background: #81d3f8 !important;
+  border-color: #81d3f8 !important;
+  color: white !important;
+}
+.btn-style3:hover,.btn-style3:focus{
+  background-color: #81d3f8 !important;
+  color: white !important;
+}
+.el-button.is-disabled{
+  opacity: 0.5;
+}
+.el-table .el-table__header th{
+  background: #f5f7fa;
+}
+
+.btn-Generate{
+  background-color: #169BD5 !important;
+  border-color: #169BD5 !important;
+  color: white !important;
+}
+.btn-Generate:hover,.btn-Generate:focus{
+  background-color: #169BD5 !important;
+  color: white !important;
+}
+
+.btn-AddDispatch{
+  background-color: #00BFBF !important;
+  border-color: #00BFBF !important;
+  color: white !important;
+}
+.btn-AddDispatch:hover,.btn-AddDispatch:focus{
+  background-color: #00BFBF !important;
+  color: white !important;
+}
+
+.btn-CancelStowage{
+  background-color: #D9001B !important;
+  border-color: #D9001B !important;
+  color: white !important;
+}
+.btn-CancelStowage:hover,.btn-CancelStowage:focus{
+  background-color: #D9001B !important;
+  color: white !important;
+}
