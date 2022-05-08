@@ -97,6 +97,9 @@ module.exports = {
         '@': resolve('src'),
         '@assets': resolve('src/assets'),
         '@api': resolve('src/api'),
+        '@views': resolve('src/views'),
+        '@utils': resolve('src/utils'),
+        '@components': resolve('src/components'),
         '@formDesigner': resolve('src/views/formDesigner') // 表单设计器
       }
     },

@@ -5,3 +5,4 @@
  * @LastEditors: Zander
  * @LastEditTime: 2022/5/6 16:01
  */
+export const defaultSettings = require('@/config/settings.js');

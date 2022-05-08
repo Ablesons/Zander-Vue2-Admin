@@ -1,29 +1,56 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import baseRoutes from '@/router/base';
+import { constantRoutes } from '@/router/constant';
+import { routerBeforeEach, routerAfterEach } from '@utils/permission';
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+/**
+ * 处理路由
+ * @returns {*[]}
+ */
+const setRoutes = () => {
+  baseRoutes.push(...constantRoutes)
+  return baseRoutes;
+}
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
+/**
+ * 实例化路由
+ */
+const createRouter = () => new VueRouter({
+  // mode: "history", //去掉url中的#
+  scrollBehavior: (to, from, savedPosition) => {
+    if (savedPosition) {
+      return savedPosition;
+    }
+    return { x: 0, y: 0 };
+  },
+  routes: setRoutes()
+});
+
+const router = createRouter();
+
+/**
+ * 路由执行前拦截
+ */
+router.beforeEach(async (to, from, next) => {
+  routerBeforeEach(to, from, next);
+});
+
+/**
+ * 路由执行后拦截
+ */
+router.afterEach(to => {
+  routerAfterEach(to);
+});
+
+/**
+ * 重置路由
+ */
+export function resetRouter() {
+  const newRouter = createRouter();
+  router.matcher = newRouter.matcher; // reset router
+}
 
 export default router
