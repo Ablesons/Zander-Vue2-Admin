@@ -23,7 +23,8 @@ const getPageTitle = (key) => {
 
 export const routerBeforeEach = (to, from, next) => {
   NProgress.start();
-  if (getToken()) {
+  next();
+  /* if (getToken()) {
     // 路由白名单标识
     if (to.meta.unauth) {
       next();
@@ -34,7 +35,7 @@ export const routerBeforeEach = (to, from, next) => {
     if (to.meta.unauth) {
       next();
     } else {}
-  }
+  } */
 }
 
 export const routerAfterEach = (to) => {

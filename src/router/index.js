@@ -11,7 +11,7 @@ Vue.use(VueRouter)
  * @returns {*[]}
  */
 const setRoutes = () => {
-  baseRoutes.push(...constantRoutes)
+  baseRoutes.push(...constantRoutes);
   return baseRoutes;
 }
 
