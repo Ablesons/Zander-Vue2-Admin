@@ -7,4 +7,18 @@
  */
 import Layout from '@/layout/index.vue';
 
-export default []
+export default [
+  {
+    name: 'redirect',
+    path: '/redirect',
+    component: Layout,
+    meta: { hidden: true },
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        component: () => import('@/layout/redirect.vue'),
+        meta: { title: 'redirect', unauth: true }
+      }
+    ]
+  }
+]
