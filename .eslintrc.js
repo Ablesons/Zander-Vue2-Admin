@@ -10,7 +10,7 @@ module.exports = {
     '@vue/standard'
   ],
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
     ecmaVersion: 2020,
     sourceType: 'module',
     jsxPragma: 'React',
