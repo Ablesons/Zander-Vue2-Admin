@@ -2,6 +2,7 @@
   "name": "zander-admin",
   "private": false,
   "version": "0.1.0",
+  "description": "Webpack + Vue2 + JavaScript 后台管理模板",
   "author": "Zander",
   "license": "MIT",
   "scripts": {
@@ -12,6 +13,17 @@
     "lint": "vue-cli-service lint",
     "preinstall": "npx only-allow yarn"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ablesons/Zander-Vue2-Admin.git"
+  },
+  "keywords": [
+    "Webpack",
+    "Vue2",
+    "JavaScript",
+    "Template",
+    "Admin"
+  ],
   "dependencies": {
     "accounting": "^0.4.1",
     "axios": "^0.27.2",
