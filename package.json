@@ -10,7 +10,7 @@
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint",
+    "lint": "eslint --ext .js,.vue src",
     "preinstall": "npx only-allow yarn"
   },
   "repository": {
