@@ -24,6 +24,7 @@ import '@/directive'
 import BackToTop from '@components/BackToTop'
 import ZdToolbar from '@components/Toolbar';
 import ZdSelect from '@components/Select/Select';
+import ZdSelectPlus from '@components/Select/SelectPlus';
 import ZdTitle from '@components/Title'
 import ZdTable from '@components/Table/index.vue';
 import ZdDialog from '@components/Dialog';
@@ -61,6 +62,7 @@ Viewer.setDefaults({
 Vue.component('BackToTop', BackToTop)
 Vue.component('zd-toolbar', ZdToolbar)
 Vue.component('zd-select', ZdSelect)
+Vue.component('zd-select-plus', ZdSelectPlus)
 Vue.component('zd-title', ZdTitle)
 Vue.component('zd-table', ZdTable)
 Vue.component('zd-dialog', ZdDialog)
