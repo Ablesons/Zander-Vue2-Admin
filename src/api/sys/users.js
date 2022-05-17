@@ -24,3 +24,10 @@ export const apiLogin = (loginParams) => $post({
 export const apiLoginByToken = () => $post({
   url: '/xylp/common/loginByToken'
 })
+
+/**
+ * 登出
+ */
+export const apiLogOut = () => $post({
+  url: '/sys/cadeUser/logOut'
+});

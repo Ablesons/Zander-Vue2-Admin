@@ -7,9 +7,9 @@
  */
 export default [
   //  默认进入首页
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import('@views/About.vue')
-  }
+  // {
+  //   path: '/about',
+  //   name: 'About',
+  //   component: () => import('@views/About.vue')
+  // }
 ];

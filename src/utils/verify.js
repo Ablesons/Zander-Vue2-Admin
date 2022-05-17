@@ -60,12 +60,16 @@ export function isArray (val) {
 }
 
 export function isObject (val) {
-  return val !== null && is(val, 'Object')
+  return val !== null && val !== undefined && is(val, 'Object')
 }
 
 export function isEmpty (val) {
   if (isArray(val) || isString(val)) {
     return val.length === 0
+  }
+
+  if (isNull(val) || isUnDef(val)) {
+    return true
   }
 
   if (val instanceof Map || val instanceof Set) {

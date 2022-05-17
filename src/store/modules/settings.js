@@ -10,6 +10,7 @@ import { defaultSettings } from '@/config';
 
 const state = {
   theme: variables.theme,
+  sidebarTheme: defaultSettings.sidebarTheme,
   showSettings: defaultSettings.showSettings,
   showTagsView: defaultSettings.showTagsView,
   fixedHeader: defaultSettings.fixedHeader,

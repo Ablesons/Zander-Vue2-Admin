@@ -1,0 +1,54 @@
+/**
+ * @Description: 响应式文件
+ * @Author: Zander
+ * @Date: 2022/5/11 10:05
+ * @LastEditors: Zander
+ * @LastEditTime: 2022/5/11 10:05
+ */
+import store from '@/store';
+
+const { body } = document
+// 参考Bootstrap的响应式设计
+const WIDTH = 992;
+
+export default {
+  name: 'ResizeMixin',
+  watch: {
+    $route() {
+      if (this.device === 'mobile' && this.sidebar.opened) {
+        store.dispatch('app/closeSideBar', { withoutAnimation: false })
+      }
+    }
+  },
+  beforeMount() {
+    window.addEventListener('resize', this.$_resizeHandler)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.$_resizeHandler)
+  },
+  mounted() {
+    const isMobile = this.$_isMobile()
+    if (isMobile) {
+      store.dispatch('app/toggleDevice', 'mobile')
+      store.dispatch('app/closeSideBar', { withoutAnimation: true })
+    }
+  },
+  methods: {
+    // use $_ for mixins properties
+    // https://vuejs.org/v2/style-guide/index.html#Private-property-names-essential
+    $_isMobile() {
+      const rect = body.getBoundingClientRect()
+      return rect.width - 1 < WIDTH
+    },
+    $_resizeHandler() {
+      if (!document.hidden) {
+        const isMobile = this.$_isMobile()
+        store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')
+
+        if (isMobile) {
+          store.dispatch('app/closeSideBar', { withoutAnimation: true })
+        }
+      }
+    }
+  }
+}

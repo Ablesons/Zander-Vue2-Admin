@@ -10,6 +10,7 @@ $tiffany: #4AB7BD;
 $yellow:#FEC171;
 $panGreen: #30B08F;
 
+//------------Dark------------//
 // Sidebar
 $sideBarWidth: 190px;
 $subMenuBg: #1f2d3d;
@@ -20,6 +21,7 @@ $menuText: #bfcbd9;
 $menuHover:#263445;
 $menuActiveText: #409eff; // Also see settings.sidebarTextTheme
 $subMenuActiveText:#f4f4f5; // https://github.com/ElemeFE/element/issues/12951
+$logoTextColor: #ffffff;
 
 // Login page
 $lightGray: #eee;
@@ -27,15 +29,25 @@ $darkGray: #889aa4;
 $loginBg: #2d3a4b;
 $loginCursorColor: #fff;
 
+//------------Light------------//
+// Sidebar
+$menuLightBg: #ffffff;
+$logoTextLightColor: #001529;
+$menuLightText:rgba(0,0,0,.70);
+
 // the :export directive is the magic sauce for webpack
 // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
 :export {
   menuBg: $menuBg;
+  menuLightBg: $menuLightBg;
   menuText: $menuText;
+  menuLightText: $menuLightText;
   menuActiveText: $menuActiveText;
   subMenuActiveText: $subMenuActiveText;
   menuHover: $menuHover;
   subMenuBg: $subMenuBg;
   subMenuHover: $subMenuHover;
   sideBarWidth: $sideBarWidth;
+  logoTextColor: $logoTextColor;
+  logoTextLightColor: $logoTextLightColor;
 }

@@ -7,7 +7,7 @@
  -->
 <script>
 export default {
-  name: 'redirect',
+  name: 'Redirect',
   created() {
     const { params, query } = this.$route
     const { path } = params

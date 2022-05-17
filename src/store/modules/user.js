@@ -7,6 +7,7 @@
  */
 import { apiLogin, apiLoginByToken } from '@api/sys/users';
 import { removeToken, setToken } from '@utils/auth';
+import { resetRouter } from '@/router';
 import { localStorageUtils, sessionStorageUtils } from '@utils/storage';
 
 const LOGINUSERKEY = 'LOGINUSER';
@@ -89,10 +90,13 @@ const actions = {
       let { loginName, password } = userInfo;
       loginName = loginName.trim();
       apiLogin({ loginName, password }).then(result => {
+        console.log(result)
         if (result.success) {
           const { data } = result;
           setToken(data.token);
-          dispatch('setMutation', data)
+          dispatch('setUserInfo', data)
+          dispatch('cache/init', null, { root: true })
+          dispatch('menus/resetMenu', null, { root: true })
         }
         resolve(result);
       }).catch(error => {
@@ -107,7 +111,9 @@ const actions = {
         if (result.success) {
           const { data } = result;
           setToken(data.token);
-          dispatch('setMutation', data)
+          dispatch('setUserInfo', data)
+          dispatch('cache/init', null, { root: true })
+          dispatch('menus/resetMenu', null, { root: true })
         }
         resolve(result);
       }).catch(error => {
@@ -171,6 +177,10 @@ const actions = {
     sessionStorageUtils.clear();
     localStorageUtils.clear();
     dispatch('setMutation', null)
+    resetRouter()
+    dispatch('cache/clear', null, { root: true })
+    dispatch('tagsView/delAllViews', null, { root: true })
+    dispatch('menus/resetMenu', null, { root: true })
   }
 }
 

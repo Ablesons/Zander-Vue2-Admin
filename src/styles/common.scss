@@ -1,0 +1,201 @@
+.user-popper-container{
+  min-width: 300px;
+  padding: 0;
+}
+
+.zd-container {
+  padding: 10px;
+  position: relative;
+
+  // 查询工具条
+  .zd-toolbar {
+    background-color: #ffffff;
+    padding: 5px 10px;
+
+    .button-group {
+      width: 100%;
+      text-align: right;
+      padding-right: 1rem;
+    }
+  }
+
+  // 查询组件
+  .search-container {
+    width: 100%;
+    position: relative;
+
+    .el-col {
+      padding: 0 0.2rem;
+
+      .el-form-item {
+        margin-bottom: 5px !important;
+        margin-top: 5px;
+
+        .el-date-editor {
+          width: auto;
+          max-width: 20vw;
+        }
+      }
+    }
+
+    .advanced_btn {
+      position: absolute;
+      padding: 4px 5px;
+      top: 0;
+    }
+  }
+}
+
+// 固定头部
+.fixed-header + .app-main {
+  .zd-container {
+    min-height: calc(100vh - 60px);
+    height: calc(100vh - 60px);
+
+    .left-container {
+      height: calc(100vh - 60px);
+    }
+  }
+}
+
+// 显示TagsView
+.hasTagsView {
+  .fixed-header + .app-main {
+    .zd-container {
+      min-height: calc(100vh - 84px);
+      height: calc(100vh - 84px);
+
+      .left-container {
+        height: calc(100vh - 104px);
+      }
+
+      .right-container{
+        height: calc(100vh - 104px);
+      }
+    }
+  }
+}
+
+// Refine element ui upload
+.upload-container {
+  .el-upload {
+    width: 100%;
+
+    .el-upload-dragger {
+      width: 100%;
+      height: 200px;
+    }
+  }
+}
+
+.el-dialog__wrapper {
+  top: var(--offsetTop) !important;
+  left: var(--offsetLeft) !important;
+}
+.el-message-box__wrapper{
+  top: var(--offsetTop) !important;
+  left: var(--offsetLeft) !important;
+}
+.v-modal {
+  top: var(--offsetTop) !important;
+  left: var(--offsetLeft) !important;
+}
+
+// 输入框高度问题
+.el-form{
+  .el-form-item{
+    margin-bottom: 18px !important;
+    .el-form-item__label{
+      justify-content: flex-end;
+      color: #717479;
+    }
+  }
+  .el-form-item--mini.el-form-item, .el-form-item--small.el-form-item {
+    margin-bottom: 15px !important;
+  }
+  .el-form-item--medium .el-form-item__content, .el-form-item--medium .el-form-item__label{
+    line-height: 36px;
+    display: flex;
+  }
+  .el-form-item--small .el-form-item__content, .el-form-item--small .el-form-item__label {
+    line-height: 32px;
+    display: flex;
+  }
+  .el-form-item--mini .el-form-item__content, .el-form-item--mini .el-form-item__label {
+    line-height: 28px;
+    display: flex;
+  }
+  .el-input--medium{
+    display: table;
+    .el-input__inner{
+      display: block;
+      height: 36px;
+      line-height: 36px;
+    }
+  }
+  .el-input--small{
+    display: table;
+    .el-input__inner{
+      display: block;
+      height: 32px;
+      line-height: 32px;
+    }
+  }
+  .el-input--mini{
+    display: table;
+    .el-input__inner{
+      display: block;
+      height: 28px;
+      line-height: 28px;
+    }
+  }
+  .is-disabled{
+    .el-input__inner{
+      color: #5b5b5b;
+    }
+  }
+  .el-select{
+    display: flex;
+  }
+}
+.dateTime{
+  .el-time-spinner__wrapper {
+    width: 100% !important;
+  }
+  .el-scrollbar:nth-of-type(2) {
+    display: none !important;
+  }
+}
+.view-box{
+  font-weight: bold;
+  font-size: 14px;
+}
+.view-box.money-class{
+  color: #FF4545;
+}
+.el-input--medium{
+  .view-box{
+    height: 36px;
+    line-height: 36px;
+  }
+}
+.el-input--small{
+  .view-box{
+    height: 32px;
+    line-height: 32px;
+  }
+}
+.el-input--mini{
+  .view-box{
+    height: 28px;
+    line-height: 28px;
+  }
+}
+.user-popper-container{
+  min-width: 300px;
+  padding: 0;
+}
+/*表格行背景色*/
+.el-table__body tr.current-row>td {
+  background-color: #bed9f7 !important;
+}

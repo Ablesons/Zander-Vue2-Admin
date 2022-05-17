@@ -25,13 +25,13 @@ const mutations = {
     state.dataDic = dataDic;
   },
   SET_DATAVALUE: (state, dataValue) => {
-    state.dataDic = dataValue;
+    state.dataValue = dataValue;
   },
   SET_DATANAME: (state, dataName) => {
-    state.dataDic = dataName;
+    state.dataName = dataName;
   },
   SET_SYSCONFIG: (state, sysConfig) => {
-    state.dataDic = sysConfig;
+    state.sysConfig = sysConfig;
   }
 }
 

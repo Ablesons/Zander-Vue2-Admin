@@ -38,9 +38,14 @@ module.exports = {
   fixedHeader: true,
 
   /**
+   * 侧边栏主题 深色主题theme-dark，浅色主题theme-light
+   */
+  sidebarTheme: 'theme-dark',
+
+  /**
    * 左侧导航显示logo
    */
-  showSidebarLogo: false,
+  showSidebarLogo: true,
 
   /**
    * 显示左侧导航字体样式配置

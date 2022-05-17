@@ -5,9 +5,11 @@
  * @LastEditors: Zander
  * @LastEditTime: 2022/5/6 14:48
  */
-import { axiosRequest } from './axios';
+import axios from 'axios';
 import qs from 'qs';
+import { Message } from 'element-ui';
 import { isEmpty } from '@utils/verify';
+import { commonUtils } from '@utils/common';
 
 /**
  * 处理查询参数，排除空值条件
@@ -37,7 +39,7 @@ export const $get = (option) => {
   // 实际提交参数
   const submitParams = getSearchParams(option.params);
   Object.assign(option, { method: 'GET', params: submitParams });
-  return axiosRequest.request(option);
+  return axios(option);
 };
 
 /**
@@ -61,7 +63,7 @@ export const $post = (option) => {
   }
 
   Object.assign(option, { method: 'post' });
-  return axiosRequest.request(option);
+  return axios(option);
 }
 
 /**
@@ -71,7 +73,7 @@ export const $post = (option) => {
  */
 export const $put = (option) => {
   Object.assign(option, { method: 'PUT' });
-  return axiosRequest.request(option);
+  return axios(option);
 }
 
 /**
@@ -81,5 +83,64 @@ export const $put = (option) => {
  */
 export const $delete = (option) => {
   Object.assign(option, { method: 'DELETE' });
-  return axiosRequest.request(option);
+  return axios(option);
+}
+
+export const $exportExcel = (option) => {
+  return new Promise((resolve, reject) => {
+    const params = option.params;
+
+    // 实际提交参数
+    const submitParams = getSearchParams(params);
+
+    let fileName = params.fileName;
+
+    if (isEmpty(fileName)) {
+      fileName = commonUtils.getUUID();
+    }
+
+    Object.assign(option, {
+      method: 'get',
+      responseType: 'blob',
+      params: submitParams
+    });
+
+    axios(option)
+      .then((blobData) => {
+        if (blobData.type === 'application/vnd.ms-excel') {
+          const blob = new Blob([blobData], { type: 'application/xlsx' });
+          const url = window.URL.createObjectURL(blob);
+
+          const link = document.createElement('a'); // 创建a标签
+          link.href = url;
+          link.download = `${params.fileName}.xlsx`; // 重命名文件
+          link.click();
+          URL.revokeObjectURL(url); // 下载完成释放URL 对象
+
+          resolve(blobData);
+        } else if (blobData.type === 'application/json') {
+          const reader = new FileReader();
+          reader.readAsText(blobData);
+          reader.onload = function(e) {
+            const obj = JSON.parse(e.target.result); // 此处的msg就是后端返回的msg内容
+
+            if (obj.message) {
+              Message({
+                message: obj.message,
+                type: 'error'
+              });
+            }
+
+            resolve(obj);
+          };
+        } else {
+          const error = new Error();
+          error.message = '服务器内部错误';
+          reject(error);
+        }
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  })
 }

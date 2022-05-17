@@ -1,6 +1,6 @@
 {
   "name": "zander-admin",
-  "private": false,
+  "private": true,
   "version": "0.1.0",
   "description": "Webpack + Vue2 + JavaScript 后台管理模板",
   "author": "Zander",

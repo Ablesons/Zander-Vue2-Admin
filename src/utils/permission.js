@@ -7,10 +7,11 @@
  */
 import router from '@/router';
 import NProgress from '@utils/progress';
-import { Message } from 'element-ui'
+import { MessageBox } from 'element-ui'
 import { getToken } from '@utils/auth';
 import i18n from '@/locales';
 import store from '@/store';
+import { isEmpty } from '@utils/verify';
 
 const getPageTitle = (key) => {
   const hasKey = i18n.te(`route.${key}`);
@@ -24,18 +25,47 @@ const getPageTitle = (key) => {
 export const routerBeforeEach = (to, from, next) => {
   NProgress.start();
   next();
-  /* if (getToken()) {
+  if (getToken()) {
     // 路由白名单标识
     if (to.meta.unauth) {
       next();
       NProgress.done();
-    } else {}
+    } else {
+      if (!store.getters.isAddRouter) {
+        store.dispatch('menus/getRouters').then(() => {
+          router.addRoutes(store.getters.asyncRouter);
+          store.commit('menus/SET_IS_ADD_ROUTER', true);
+          next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
+        });
+      } else {
+        next();
+      }
+    }
   } else {
     // 路由白名单标识
     if (to.meta.unauth) {
       next();
-    } else {}
-  } */
+    } else {
+      if (isEmpty(getToken())) {
+        NProgress.done();
+        next({ name: 'Login', query: { backUrl: to.fullPath } });
+      } else {
+        MessageBox.confirm('您已被登出，请重新登录', '确定登出', {
+          confirmButtonText: '重新登录',
+          showClose: false,
+          showCancelButton: false,
+          closeOnClickModal: false,
+          closeOnPressEscape: false,
+          type: 'warning'
+        }).then(() => {
+          NProgress.done();
+          store.dispatch('user/logOut').then(() => {
+            next({ name: 'Login', query: { backUrl: to.fullPath } });
+          })
+        })
+      }
+    }
+  }
 }
 
 export const routerAfterEach = (to) => {

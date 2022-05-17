@@ -6,6 +6,9 @@
  * @LastEditTime: 2022/5/4 22:34
  */
 import { defaultSettings } from '@/config';
+import { commonUtils } from '@utils/common';
+import { apiProjectsByAppIds } from '@api/sys/project';
+import { getToken } from '@utils/auth';
 
 const state = {
   // 是否多系统模式
@@ -33,10 +36,27 @@ const mutations = {
 }
 
 const actions = {
-  initUserSystem({ commit, state }) {
-    console.log(commit);
-    console.log(state);
-    // return new Promise((resolve, reject) => {})
+  initUserSystem({ commit, dispatch, state }) {
+    return new Promise(resolve => {
+      dispatch('user/getUserInfo', null, { root: true }).then(async (result) => {
+        if (result) {
+          const { resources } = result;
+          const sysArray = commonUtils.serializeArray(resources, 'projectId');
+          await apiProjectsByAppIds(sysArray.join(',')).then(projectResult => {
+            commit('SET_USERSYS', projectResult.data)
+            commit('SET_USERSYSNUM', state.userSys.length)
+            if (state.userSys) {
+              state.userSys.map(item => {
+                if (item.appId.toUpperCase() === state.appId.toUpperCase()) {
+                  commit('SET_SYSNAME', item.name);
+                }
+              });
+            }
+          });
+        }
+        resolve(result);
+      });
+    })
   }
 }
 
@@ -45,4 +65,32 @@ export default {
   state,
   mutations,
   actions
+}
+
+/**
+ * 获取系统跳转Url并追加token
+ * @param appId
+ */
+export const getMulSysUrl = (appId) => {
+  if (state.userSys) {
+    let sysInfo = {};
+    state.userSys.map(item => {
+      if (item.appId.toUpperCase() === appId) {
+        sysInfo = item;
+      }
+    })
+
+    if (sysInfo) {
+      let url = sysInfo.webAddr ? sysInfo.webAddr : '';
+
+      let token = getToken();
+
+      token = encodeURIComponent(token);
+
+      url = `${url}#/auth?token=${token}`;
+
+      return url;
+    }
+  }
+  return ''
 }
