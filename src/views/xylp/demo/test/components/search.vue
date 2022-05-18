@@ -189,7 +189,7 @@ export default {
     },
     handleTestReset() {
       this.$refs.queryForm.resetFields();
-      this.handleQuery();
+      this.handleTestSearch();
     }
   }
 }
